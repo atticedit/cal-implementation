@@ -12,4 +12,10 @@ class TestZeller < MiniTest::Unit::TestCase
     assert_equal z, 5
   end
 
+  def test_zeller_throws_error_for_blank_input
+    assert_raises ArgumentError do
+      Zeller.calculate("")
+    end
+  end
+
 end
