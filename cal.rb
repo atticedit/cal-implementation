@@ -1,4 +1,4 @@
-class Impcal
+class Cal
   def self *args
   end
 end
