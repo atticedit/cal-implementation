@@ -1,4 +1,3 @@
-class Cal
-  def self *args
-  end
+begin
+
 end
