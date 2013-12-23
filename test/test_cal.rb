@@ -46,8 +46,8 @@ class TestCalIntegration < MiniTest::Unit::TestCase
     assert_equal `cal 2013 12`, `ruby cal.rb 2013 12`
   end
 
-  def test_cal_dot_rb_throws_error_for_Julian_year
-    assert_equal "Date must be in the range of years 1800–3000 (ArgumentError)", `ruby cal.rb 1500`
+  def test_cal_dot_rb_throws_error_for_year_outside_scope
+    assert_equal "Year must be within the range of 1800–3000 (ArgumentError)", `ruby cal.rb 1500`
   end
 
 end
