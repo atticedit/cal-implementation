@@ -16,7 +16,7 @@ class TestMonth < MiniTest::Unit::TestCase
   end
 
   def test_zeller_returns_correct_day_of_week_for_common_year_March_1st
-    assert_equal 5, (Month.new.zeller 20130301)
+    assert_equal 3, (Month.new.zeller 20110301)
   end
 
   def test_zeller_returns_correct_day_of_week_for_hundred_divisible_common_year_March_1st
