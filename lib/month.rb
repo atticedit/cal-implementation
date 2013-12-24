@@ -3,6 +3,6 @@ class Month
   def initialize
   end
 
-  def zeller argument
+  def firstdayzeller date_array
   end
 end
