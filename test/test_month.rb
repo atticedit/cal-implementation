@@ -35,9 +35,15 @@ class TestMonth < MiniTest::Unit::TestCase
     end
   end
 
-  def test_zeller_throws_error_for_year_outside_scope
+  def test_zeller_throws_error_for_year_below_scope
     assert_raises ArgumentError do
       Month.new.zeller [1500,03]
+    end
+  end
+
+  def test_zeller_throws_error_for_year_above_scope
+    assert_raises ArgumentError do
+      Month.new.zeller [4000,01]
     end
   end
 
