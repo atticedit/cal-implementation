@@ -7,8 +7,8 @@ begin
   # if 0 arguments given:
   #   get current year and month
 
-  #   use firstdayzeller method to find day of week of first day of the month
-  day_of_week_for_first_day = Month.new.firstdayzeller [year,month]
+  #   use first_day_zeller method to find day of week of first day of the month
+  day_of_week_for_first_day = Month.new.first_day_zeller [year,month]
 
   #   if the month is February, determine if it has 29 days
   if month == "February"
@@ -32,8 +32,8 @@ begin
   # if 1 argument given:
   #   a year between 1800 and 3000
   # then:
-  #   use firstdayzeller method to find day of week of January 1 that year
-  day_of_week_for_first_day = Month.new.firstdayzeller [year,01]
+  #   use first_day_zeller method to find day of week of January 1 that year
+  day_of_week_for_first_day = Month.new.first_day_zeller [year,01]
   #   determine if there are 29 days in February that year
   #   concatenate and display one line at a time of 3-month blocks:
   #     January, February, March
@@ -45,8 +45,8 @@ begin
   #   a month (e.g. 1, 01, jan, Jan, january, or January) and
   #   a year between 1800 and 3000
   # then:
-  #   use firstdayzeller method to find day of week of January 1 that year
-  day_of_week_for_first_day = Month.new.firstdayzeller [year,01]
+  #   use first_day_zeller method to find day of week of January 1 that year
+  day_of_week_for_first_day = Month.new.first_day_zeller [year,01]
   #   if the month is February, determine if it has 29 days
   #   display that month
 
