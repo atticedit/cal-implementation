@@ -1,14 +1,28 @@
+#!/usr/bin/env ruby
+require_relative 'lib/month'
 begin
 
   # accept between 0 and 3 arguments
 
   # if 0 arguments given:
   #   get current year and month
+
   #   use firstdayzeller method to find day of week of first day of the month
+  day_of_week_for_first_day = Month.new.firstdayzeller [year,month]
+
   #   if the month is February, determine if it has 29 days
-  #     see if firstdayzeller for February 29 of that year throws error?
-  #     see if firstdayzeller shows March 1 of that year is 2 days later than February 28?
-  #     see if (year - 1) is divisible by 4, 100, and/or 400?
+  if month == "February"
+    year = year - 1
+
+    # February has 28 days if the year is not divisible by 4, or if it's divisible by
+    #   100 but not by 400
+    if ((year % 4 != 0) || ((year % 100 == 0) && (year % 400 != 0)))
+      february_length = 28
+    else
+      february_length = 29
+    end
+  end
+
   #   display that month
   # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   # note: the feature to accept 0 arguments would use the Date class, which is disallowed
@@ -19,6 +33,7 @@ begin
   #   a year between 1800 and 3000
   # then:
   #   use firstdayzeller method to find day of week of January 1 that year
+  day_of_week_for_first_day = Month.new.firstdayzeller [year,01]
   #   determine if there are 29 days in February that year
   #   concatenate and display one line at a time of 3-month blocks:
   #     January, February, March
@@ -31,6 +46,7 @@ begin
   #   a year between 1800 and 3000
   # then:
   #   use firstdayzeller method to find day of week of January 1 that year
+  day_of_week_for_first_day = Month.new.firstdayzeller [year,01]
   #   if the month is February, determine if it has 29 days
   #   display that month
 
