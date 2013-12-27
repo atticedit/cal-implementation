@@ -3,7 +3,7 @@ class Month
   def initialize
   end
 
-  def firstdayzeller date_array
+  def first_day_zeller date_array
     year = date_array[0]
     month = date_array[1]
     raise ArgumentError, 'Year must be within the range of 1800–3000' if year < 1800 || year > 3000
