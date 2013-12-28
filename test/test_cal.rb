@@ -30,12 +30,20 @@ class TestCalIntegration < MiniTest::Unit::TestCase
     assert_equal `cal 4 1896`, `ruby cal.rb 4 1896`
   end
 
-  def test_cal_dot_rb_matches_cal_when_year_and_spelled_month_given
+  def test_cal_dot_rb_matches_cal_when_year_and_capitalized_spelled_month_given
    assert_equal `cal December 2013`, `ruby cal.rb December 2013`
   end
 
-  def test_cal_dot_rb_matches_cal_when_year_and_abbreviated_month_spelling_given
+  def test_cal_dot_rb_matches_cal_when_year_and_lowercased_spelled_month_given
+   assert_equal `cal december 2013`, `ruby cal.rb december 2013`
+  end
+
+  def test_cal_dot_rb_matches_cal_when_year_and_capitalized_abbreviated_month_spelling_given
     assert_equal `cal Dec 2013`, `ruby cal.rb Dec 2013`
+  end
+
+  def test_cal_dot_rb_matches_cal_when_year_and_lowercased_abbreviated_month_spelling_given
+    assert_equal `cal dec 2013`, `ruby cal.rb dec 2013`
   end
 
   def test_cal_dot_rb_matches_cal_when_no_arguments_given
