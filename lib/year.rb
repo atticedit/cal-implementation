@@ -13,6 +13,6 @@ class Year
     end
   end
 
-#  no check for year being within the defined range, but if cal.rb is written
-#    correctly this method will never be passed a year outside the 1800–3000 range
+# no check for year being within the defined range, but if cal.rb is written
+# correctly this method will never be passed a year outside the 1800–3000 range
 end

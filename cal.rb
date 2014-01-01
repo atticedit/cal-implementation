@@ -1,52 +1,68 @@
-#!/usr/bin/env ruby
 require_relative 'lib/month'
+require_relative 'lib/year'
 begin
 
-#   accept between 0 and 3 arguments
-
   # if 2 arguments given:
-  if ["01", "1", "January", "Jan", "january", "jan"].include? arg1
-    month = "January"
-  elsif ["02", "2", "February", "Feb", "february", "feb"].include? arg1
-    month = "February"
-  elsif ["03", "3", "March", "Mar", "march", "mar"].include? arg1
-    month = "March"
-  elsif ["04", "4", "April", "Apr", "april", "apr"].include? arg1
-    month = "April"
-  elsif ["05", "5", "May", "may"].include? arg1
-    month = "May"
-  elsif ["06", "6", "June", "Jun", "june", "jun"].include? arg1
-    month = "June"
-  elsif ["07", "7", "July", "Jul", "july", "jul"].include? arg1
-    month = "July"
-  elsif ["08", "8", "August", "Aug", "august", "aug"].include? arg1
-    month = "August"
-  elsif ["09", "9", "September", "Sep", "september", "sep"].include? arg1
-    month = "September"
-  elsif ["10", "October", "Oct", "october", "oct"].include? arg1
-    month = "October"
-  elsif ["11", "November", "Nov", "november", "nov"].include? arg1
-    month = "November"
-  elsif ["12", "December", "Dec", "december", "dec"].include? arg1
-    month = "December"
-  else raise ArgumentError, "#{arg1} is neither a month number (1..12) nor a name"
-  end
-  year = arg2
-  #   a month (e.g. 1, 01, jan, Jan, january, or January) and
-  #   a year between 1800 and 3000
-  # then:
-  #   use first_day_zeller method to find day of week of first day of the month
+  month = ARGV[0].to_i
+  year = ARGV[1].to_i
+  raise ArgumentError, 'Year must be within the range of 1800–3000' if year < 1800 || year > 3000
+
+  # use first_day_zeller method to find day of week of first day of the month
   day_of_week_for_first_day = Month.new.first_day_zeller [year,month]
-  #   if the month is February, determine how many days it has
-  if month == "February"
-    days_in_february = Year.new.february_length year
+
+  case ARGV[0]
+  when "01", "1"
+    month = "January"
+    last_day = 31
+  when "02", "2"
+    month = "February"
+    last_day = Year.new.february_length year
+  when "03", "3"
+    month = "March"
+    last_day = 31
+  when "04", "4"
+    month = "April"
+    last_day = 30
+  when "05", "5"
+    month = "May"
+    last_day = 31
+  when "06", "6"
+    month = "June"
+    last_day = 30
+  when "07", "7"
+    month = "July"
+    last_day = 31
+  when "08", "8"
+    month = "August"
+    last_day = 31
+  when "09", "9"
+    month = "September"
+    last_day = 30
+  when "10"
+    month = "October"
+    last_day = 31
+  when "11"
+    month = "November"
+    last_day = 30
+  when "12"
+    month = "December"
+    last_day = 31
+  else raise ArgumentError, "#{ARGV[0]} is neither a month number (1..12) nor a name"
   end
-  #   display that month
+
+  # display that month
   puts "#{month} #{year}".center(20)
   puts "Su Mo Tu We Th Fr Sa"
-  #   [continue printing out month]
+  case day_of_week_for_first_day
+  when 1
+    days = (1..last_day)
+    days.each do |i|
+      print " ", i, " "
+    end
+    puts
+  end
 
-#   # if 1 argument given:
+  #   # if 1 argument given:
 #   #   a year between 1800 and 3000
 #   # then:
 #   #   use first_day_zeller method to find day of week of January 1 that year
