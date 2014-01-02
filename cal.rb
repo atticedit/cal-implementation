@@ -11,42 +11,18 @@ begin
   day_of_week_for_first_day = Month.new.first_day_zeller [year,month]
 
   case ARGV[0]
-  when "01", "1"
-    month = "January"
-    last_day = 31
-  when "02", "2"
-    month = "February"
-    last_day = Year.new.february_length year
-  when "03", "3"
-    month = "March"
-    last_day = 31
-  when "04", "4"
-    month = "April"
-    last_day = 30
-  when "05", "5"
-    month = "May"
-    last_day = 31
-  when "06", "6"
-    month = "June"
-    last_day = 30
-  when "07", "7"
-    month = "July"
-    last_day = 31
-  when "08", "8"
-    month = "August"
-    last_day = 31
-  when "09", "9"
-    month = "September"
-    last_day = 30
-  when "10"
-    month = "October"
-    last_day = 31
-  when "11"
-    month = "November"
-    last_day = 30
-  when "12"
-    month = "December"
-    last_day = 31
+  when "01", "1" then month = "January"   and last_day = 31
+  when "02", "2" then month = "February"  and last_day = (Year.new.february_length year)
+  when "03", "3" then month = "March"     and last_day = 31
+  when "04", "4" then month = "April"     and last_day = 30
+  when "05", "5" then month = "May"       and last_day = 31
+  when "06", "6" then month = "June"      and last_day = 30
+  when "07", "7" then month = "July"      and last_day = 31
+  when "08", "8" then month = "August"    and last_day = 31
+  when "09", "9" then month = "September" and last_day = 30
+  when "10"      then month = "October"   and last_day = 31
+  when "11"      then month = "November"  and last_day = 30
+  when "12"      then month = "December"  and last_day = 31
   else raise ArgumentError, "#{ARGV[0]} is neither a month number (1..12) nor a name"
   end
 
