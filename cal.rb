@@ -57,7 +57,11 @@ begin
   when 1
     days = (1..last_day)
     days.each do |i|
-      print " ", i, " "
+      if i.to_s.size == 1
+        print " ", i, " "
+      elsif i.to_s.size == 2
+        print i, " "
+      end
     end
     puts
   end
