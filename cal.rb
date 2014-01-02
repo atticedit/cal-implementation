@@ -26,20 +26,16 @@ begin
   else raise ArgumentError, "#{ARGV[0]} is neither a month number (1..12) nor a name"
   end
 
+  days = (1..last_day)
+
   # display that month
   puts "#{month} #{year}".center(20)
   puts "Su Mo Tu We Th Fr Sa"
-  case day_of_week_for_first_day
-  when 1
-    days = (1..last_day)
-    days.each do |i|
-      if i.to_s.size == 1
-        print " ", i, " "
-      elsif i.to_s.size == 2
-        print i, " "
-      end
-    end
-    puts
+  days.each do |i|
+    day = i.to_s
+    day = " " + i if day == 1
+    print day, " "
   end
+  puts
 
 end
