@@ -7,7 +7,7 @@ begin
   year = ARGV[1].to_i
   raise ArgumentError, 'Year must be within the range of 1800–3000' if year < 1800 || year > 3000
 
-  # use identify_day_one method to find day of week of first day of the month
+  # use identify_day_one method to find the day of the week of the first day of the month
   day_of_week_for_day_one = Month.new.identify_day_one [year,month]
 
   case ARGV[0]
@@ -31,15 +31,18 @@ begin
     days.unshift(0)
   end
 
-  # display that month
+  # display the month
   puts "#{month} #{year}".center(20)
   puts "Su Mo Tu We Th Fr Sa"
-  days.each do |i|
-    day = i.to_s
-    day = "  " if day == "0"
-    day = " " + day if day.size == 1
-    print day, " "
+  index = 0
+  6.times do |i|
+    7.times do |j|
+      day = days[index].to_s
+      day = "  " if day == "0"
+      day = " " + day if day.size == 1
+      print day, " "
+      index += 1
+    end
+    print "\n"
   end
-  puts
-
 end
