@@ -22,6 +22,10 @@ class TestCalIntegration < MiniTest::Unit::TestCase
     assert_equal `cal 02 1900`, `ruby cal.rb 02 1900`
   end
 
+  def test_cal_dot_rb_matches_cal_when_year_and_one_digit_month_given
+    assert_equal `cal 4 1896`, `ruby cal.rb 4 1896`
+  end
+
   def test_cal_dot_rb_matches_cal_when_year_argument_given
     assert_equal `cal 2013`, `ruby cal.rb 2013`
   end
