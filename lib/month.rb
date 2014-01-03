@@ -1,6 +1,6 @@
 class Month
 
-  def first_day_zeller date_array
+  def identify_day_one date_array
     year = date_array[0]
     month = date_array[1]
 

@@ -7,8 +7,8 @@ begin
   year = ARGV[1].to_i
   raise ArgumentError, 'Year must be within the range of 1800–3000' if year < 1800 || year > 3000
 
-  # use first_day_zeller method to find day of week of first day of the month
-  day_of_week_for_first_day = Month.new.first_day_zeller [year,month]
+  # use identify_day_one method to find day of week of first day of the month
+  day_of_week_for_day_one = Month.new.identify_day_one [year,month]
 
   case ARGV[0]
   when "01", "1" then month = "January"   and last_day = 31
@@ -27,7 +27,7 @@ begin
   end
 
   days = (1..last_day).to_a
-  (day_of_week_for_first_day - 1).times do
+  (day_of_week_for_day_one - 1).times do
     days.unshift(0)
   end
 
