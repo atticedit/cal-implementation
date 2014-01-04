@@ -2,12 +2,12 @@ require_relative 'lib/month'
 require_relative 'lib/year'
 begin
 
-  # if 2 arguments given:
+  # for the case where 2 arguments are given:
   month = ARGV[0].to_i
   year = ARGV[1].to_i
   raise ArgumentError, 'Year must be within the range of 1800–3000' if year < 1800 || year > 3000
 
-  # use identify_day_one method to find the day of the week of the first day of the month
+  # find the day of the week (zero-indexed to a week starting on Sunday) of the first day of the month
   day_of_week_for_day_one = Month.new.identify_day_one [year,month]
 
   case ARGV[0]
@@ -26,34 +26,39 @@ begin
   else raise ArgumentError, "#{ARGV[0]} is neither a month number (1..12) nor a name"
   end
 
-  days = (1..last_day).to_a
-  (day_of_week_for_day_one - 1).times do
-    days.unshift(" ")
-  end
-
-  index = 0
-
+  # define constants and variables
   MAX_WEEKS_IN_MONTH = 6
   DAYS_IN_WEEK = 7
   OUTPUT_WIDTH = 20
 
-  # display the month
   header = "#{month} #{year}"
-  padding = (OUTPUT_WIDTH - header.size)/2
-  puts (" " * padding) + header
+  padding = (" " * ((OUTPUT_WIDTH - header.size)/2))
+  days = (1..last_day).to_a
+  (day_of_week_for_day_one - 1).times do
+    days.unshift(" ")
+  end
+  day_divider = " "
+
+  index = 0
+
+  # display the month
+  puts padding + header
   puts "Su Mo Tu We Th Fr Sa"
   MAX_WEEKS_IN_MONTH.times do |i|
     DAYS_IN_WEEK.times do |j|
       if index < days.length
         day = days[index].to_s
         day = " #{day}" if day.size == 1
+
         if j == (DAYS_IN_WEEK - 1) then print day
         elsif index == (days.length - 1) then print day
-        else print day, " "
+        else print day, day_divider
         end
+
         index += 1
       end
     end
+
     print "\n"
   end
 
