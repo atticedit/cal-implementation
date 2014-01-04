@@ -28,21 +28,33 @@ begin
 
   days = (1..last_day).to_a
   (day_of_week_for_day_one - 1).times do
-    days.unshift(0)
+    days.unshift(" ")
   end
 
-  # display the month
-  puts "#{month} #{year}".center(20)
-  puts "Su Mo Tu We Th Fr Sa"
   index = 0
-  6.times do |i|
-    7.times do |j|
-      day = days[index].to_s
-      day = "  " if day == "0"
-      day = " " + day if day.size == 1
-      print day, " "
-      index += 1
+
+  MAX_WEEKS_IN_MONTH = 6
+  DAYS_IN_WEEK = 7
+  OUTPUT_WIDTH = 20
+
+  # display the month
+  header = "#{month} #{year}"
+  padding = (OUTPUT_WIDTH - header.size)/2
+  puts (" " * padding) + header
+  puts "Su Mo Tu We Th Fr Sa"
+  MAX_WEEKS_IN_MONTH.times do |i|
+    DAYS_IN_WEEK.times do |j|
+      if index < days.length
+        day = days[index].to_s
+        day = " #{day}" if day.size == 1
+        if j == (DAYS_IN_WEEK - 1) then print day
+        elsif index == (days.length - 1) then print day
+        else print day, " "
+        end
+        index += 1
+      end
     end
     print "\n"
   end
+
 end
