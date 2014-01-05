@@ -3,12 +3,8 @@ require_relative 'lib/year'
 begin
 
   # for the case where 2 arguments are given:
-  month = ARGV[0].to_i
   year = ARGV[1].to_i
   raise ArgumentError, 'Year must be within the range of 1800–3000' if year < 1800 || year > 3000
-
-  # find the day of the week (zero-indexed to a week starting on Sunday) of the first day of the month
-  day_of_week_for_day_one = Month.new.identify_day_one [year,month]
 
   case ARGV[0]
   when "01", "1" then month = "January"   and last_day = 31
@@ -34,7 +30,9 @@ begin
   header = "#{month} #{year}"
   padding = (" " * ((OUTPUT_WIDTH - header.size)/2))
   days = (1..last_day).to_a
-  (day_of_week_for_day_one - 1).times do
+  numeric_month = ARGV[0].to_i
+  offset_of_day_one = Month.new.find_offset_of_day_one [year,numeric_month]
+  offset_of_day_one.times do
     days.unshift(" ")
   end
   day_divider = " "
