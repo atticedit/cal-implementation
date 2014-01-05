@@ -31,7 +31,7 @@ begin
   padding = (" " * ((OUTPUT_WIDTH - header.size)/2))
   days = (1..last_day).to_a
   numeric_month = ARGV[0].to_i
-  offset_of_day_one = Month.new.find_offset_of_day_one [year,numeric_month]
+  offset_of_day_one = Month.new.find_offset_of_day_one year, numeric_month
   offset_of_day_one.times do
     days.unshift(" ")
   end

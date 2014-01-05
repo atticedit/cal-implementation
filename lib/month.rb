@@ -1,9 +1,6 @@
 class Month
 
-  def find_offset_of_day_one date_array
-    year = date_array[0]
-    month = date_array[1]
-
+  def find_offset_of_day_one year, month
     raise ArgumentError, 'Year must be within the range of 1800–3000' if year < 1800 || year > 3000
 
     # define January and February as the 13th and 14th months of the previous year, per Zeller's congruence
