@@ -34,8 +34,12 @@ class TestCalIntegration < MiniTest::Unit::TestCase
     assert_equal `cal 2013 12`, `ruby cal.rb 2013 12`
   end
 
-  def test_cal_dot_rb_rejects_year_outside_scope
+  def test_cal_dot_rb_rejects_year_below_scope
     assert_equal "", `ruby cal.rb 1 1500`
+  end
+
+  def test_cal_dot_rb_rejects_year_above_scope
+    assert_equal "", `ruby cal.rb 1 4000`
   end
 
 end

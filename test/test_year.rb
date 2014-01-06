@@ -39,4 +39,16 @@ class TestYear < MiniTest::Unit::TestCase
     assert_equal 28, Year.new(3000).february_length
   end
 
+  def test_february_length_throws_error_for_year_below_scope
+    assert_raises ArgumentError do
+      Year.new(1500).february_length
+    end
+  end
+
+  def test_february_length_throws_error_for_year_above_scope
+    assert_raises ArgumentError do
+      Year.new(4000).february_length
+    end
+  end
+
 end
