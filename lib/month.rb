@@ -8,6 +8,7 @@ class Month
   @@last_days = [31,28,31,30,31,30,31,31,30,31,30,31]
 
   def initialize numeric_month, year
+    @numeric_month = numeric_month
     unless (1..12).include? numeric_month
       raise ArgumentError, "#{numeric_month} is neither a month number (1..12) nor a name"
     end
@@ -19,7 +20,7 @@ class Month
       last_day = Year.new(year).february_length
     end
     days = (1..last_day).to_a
-    offset_of_day_one = find_offset_of_day_one year, numeric_month
+    offset_of_day_one = find_offset_of_day_one
     offset_of_day_one.times do
       days.unshift(" ")
     end
@@ -56,8 +57,11 @@ class Month
     "Su Mo Tu We Th Fr Sa"
   end
 
-  def find_offset_of_day_one year, month
-    raise ArgumentError, 'Year must be within the range of 1800–3000' if year < 1800 || year > 3000
+  def find_offset_of_day_one
+    month = @numeric_month
+    year = @year
+
+    raise ArgumentError, 'Year must be within the range of 1800–3000' if @year < 1800 || @year > 3000
 
     # define January and February as the 13th and 14th months of the previous year, per Zeller's congruence
     case month
