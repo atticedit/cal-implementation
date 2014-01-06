@@ -12,6 +12,9 @@ class Month
     unless (1..12).include? numeric_month
       raise ArgumentError, "#{numeric_month} is neither a month number (1..12) nor a name"
     end
+    if year < 1800 || year > 3000
+      raise ArgumentError, "Year must be within the range of 1800–3000"
+    end
     indexed_month = (numeric_month - 1)
     @spelled_month = @@months[indexed_month]
     @year = year
@@ -60,8 +63,6 @@ class Month
   def find_offset_of_day_one
     month = @numeric_month
     year = @year
-
-    raise ArgumentError, 'Year must be within the range of 1800–3000' if @year < 1800 || @year > 3000
 
     # define January and February as the 13th and 14th months of the previous year, per Zeller's congruence
     case month

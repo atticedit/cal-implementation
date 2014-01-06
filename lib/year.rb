@@ -9,8 +9,7 @@ class Year
 
   def initialize year
     if year < 1800 || year > 3000
-      puts "Year must be within the range of 1800–3000"
-      exit
+      raise ArgumentError, "Year must be within the range of 1800–3000"
     end
     @year = year
 

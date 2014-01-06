@@ -30,12 +30,12 @@ class TestCalIntegration < MiniTest::Unit::TestCase
     assert_equal `cal 2013`, `ruby cal.rb 2013`
   end
 
-  def test_cal_dot_rb_matches_cal_error_message_for_incorrect_format
+  def test_cal_dot_rb_matches_cal_when_incorrect_format_given
     assert_equal `cal 2013 12`, `ruby cal.rb 2013 12`
   end
 
-  def test_cal_dot_rb_throws_error_for_year_outside_scope
-    assert_equal "", `ruby cal.rb 1500`
+  def test_cal_dot_rb_rejects_year_outside_scope
+    assert_equal "", `ruby cal.rb 1 1500`
   end
 
 end

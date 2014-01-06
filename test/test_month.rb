@@ -35,16 +35,4 @@ class TestMonth < MiniTest::Unit::TestCase
     end
   end
 
-  def test_find_offset_of_day_one_throws_error_for_year_below_scope
-    assert_raises ArgumentError do
-      Month.new(03, 1500).find_offset_of_day_one
-    end
-  end
-
-  def test_find_offset_of_day_one_throws_error_for_year_above_scope
-    assert_raises ArgumentError do
-      Month.new(01, 4000).find_offset_of_day_one
-    end
-  end
-
 end
