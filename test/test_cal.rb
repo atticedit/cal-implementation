@@ -35,7 +35,7 @@ class TestCalIntegration < MiniTest::Unit::TestCase
   end
 
   def test_cal_dot_rb_throws_error_for_year_outside_scope
-    assert_equal "Year must be within the range of 1800–3000\n", `ruby cal.rb 1500`
+    assert_equal "", `ruby cal.rb 1500`
   end
 
 end

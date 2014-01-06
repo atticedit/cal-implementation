@@ -1,5 +1,61 @@
 class Month
 
+  MAX_WEEKS_IN_MONTH = 6
+  DAYS_IN_WEEK = 7
+  MONTH_OUTPUT_WIDTH = 20
+
+  @@months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+  @@last_days = [31,28,31,30,31,30,31,31,30,31,30,31]
+
+  def initialize(numeric_month, year)
+    unless (1..12).include? numeric_month
+      raise ArgumentError, "#{numeric_month} is neither a month number (1..12) nor a name"
+    end
+    indexed_month = (numeric_month - 1)
+    @month = @@months[indexed_month]
+    @year = year
+    last_day = @@last_days[indexed_month]
+    if numeric_month == 02
+      last_day = Year.new(year).february_length
+    end
+    days = (1..last_day).to_a
+    offset_of_day_one = find_offset_of_day_one year, numeric_month
+    offset_of_day_one.times do
+      days.unshift(" ")
+    end
+
+    calendar = Array.new
+    42.times do |i|
+      calendar_line = String.new
+      day = days[i].to_s
+      if day.size == 1
+        day = " #{day}"
+      elsif day == ""
+        day = "  "
+      end
+      calendar << day
+    end
+
+    @line_0 = calendar[0..6].join(" ") { |x| print x}
+    @line_1 = calendar[7..13].join(" ") { |x| print x}
+    @line_2 = calendar[14..20].join(" ") { |x| print x}
+    @line_3 = calendar[21..27].join(" ") { |x| print x}
+    @line_4 = calendar[28..34].join(" ") { |x| print x}
+    @line_5 = calendar[35..41].join(" ") { |x| print x}
+  end
+
+  attr_reader:line_0,:line_1,:line_2,:line_3,:line_4,:line_5
+
+  def header
+    header = "#{@month} #{@year}"
+    padding = (" " * ((MONTH_OUTPUT_WIDTH - header.size)/2))
+    padding + header
+  end
+
+  def dayline
+    "Su Mo Tu We Th Fr Sa"
+  end
+
   def find_offset_of_day_one year, month
     raise ArgumentError, 'Year must be within the range of 1800–3000' if year < 1800 || year > 3000
 
