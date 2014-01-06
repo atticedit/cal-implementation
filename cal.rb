@@ -45,7 +45,7 @@ begin
       puts year.dayline
 
       # display the month block
-      #
+      puts year.send("block_#{i}")
       index += 3
     end
   end

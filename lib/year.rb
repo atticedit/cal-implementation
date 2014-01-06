@@ -1,9 +1,9 @@
 class Year
 
-  # refactor to remove these magic numbers
+  YEAR_OUTPUT_PADDING = 29 # refactor to remove this magic number
   MONTH_OUTPUT_WIDTH = 20
-  YEAR_OUTPUT_PADDING = 29
   GUTTER = "  "
+  MONTHS_IN_ROW = 3
 
   @@months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
@@ -12,7 +12,6 @@ class Year
       raise ArgumentError, "Year must be within the range of 1800–3000"
     end
     @year = year
-
   end
 
   def february_length
@@ -37,11 +36,11 @@ class Year
   def monthline index
     s = String.new
     (1..3).each do |i|
-      month = @@months[index].to_s
-      padding = (" " * ((MONTH_OUTPUT_WIDTH - month.size)/2))
-      s << padding + month
-      unless i == 3
-        if month.size % 2 != 0
+      spelled_month = @@months[index].to_s
+      padding = (" " * ((MONTH_OUTPUT_WIDTH - spelled_month.size)/2))
+      s << padding + spelled_month
+      unless i == MONTHS_IN_ROW
+        if spelled_month.size.odd?
           padding = padding + " "
         end
         s << padding + GUTTER
@@ -52,7 +51,32 @@ class Year
   end
 
   def dayline
-    (("Su Mo Tu We Th Fr Sa" + GUTTER) * 3).rstrip
+    (("Su Mo Tu We Th Fr Sa" + GUTTER) * MONTHS_IN_ROW).rstrip
+  end
+
+  def format_line left, middle, right
+    left.line_0 + GUTTER + middle.line_0 + GUTTER + right.line_0 + "\n" +
+    left.line_1 + GUTTER + middle.line_1 + GUTTER + right.line_1 + "\n" +
+    left.line_2 + GUTTER + middle.line_2 + GUTTER + right.line_2 + "\n" +
+    left.line_3 + GUTTER + middle.line_3 + GUTTER + right.line_3 + "\n" +
+    left.line_4 + GUTTER + middle.line_4 + GUTTER + right.line_4.rstrip + "\n" +
+    left.line_5 + GUTTER + middle.line_5 + GUTTER + right.line_5.rstrip
+  end
+
+  def block_0
+    format_line Month.new(1, @year), Month.new(2, @year), Month.new(3, @year)
+  end
+
+  def block_1
+    format_line Month.new(4, @year), Month.new(5, @year), Month.new(6, @year)
+  end
+
+  def block_2
+    format_line Month.new(7, @year), Month.new(8, @year), Month.new(9, @year)
+  end
+
+  def block_3
+    format_line Month.new(10, @year), Month.new(11, @year), Month.new(12, @year)
   end
 
 end
