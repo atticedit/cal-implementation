@@ -7,12 +7,12 @@ class Month
   @@months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
   @@last_days = [31,28,31,30,31,30,31,31,30,31,30,31]
 
-  def initialize(numeric_month, year)
+  def initialize numeric_month, year
     unless (1..12).include? numeric_month
       raise ArgumentError, "#{numeric_month} is neither a month number (1..12) nor a name"
     end
     indexed_month = (numeric_month - 1)
-    @month = @@months[indexed_month]
+    @spelled_month = @@months[indexed_month]
     @year = year
     last_day = @@last_days[indexed_month]
     if numeric_month == 02
@@ -47,7 +47,7 @@ class Month
   attr_reader:line_0,:line_1,:line_2,:line_3,:line_4,:line_5
 
   def header
-    header = "#{@month} #{@year}"
+    header = "#{@spelled_month} #{@year}"
     padding = (" " * ((MONTH_OUTPUT_WIDTH - header.size)/2))
     padding + header
   end
