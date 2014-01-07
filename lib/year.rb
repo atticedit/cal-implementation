@@ -35,7 +35,7 @@ class Year
 
   def monthline index
     s = String.new
-    (1..3).each do |i|
+    (1..MONTHS_IN_ROW).each do |i|
       spelled_month = @@months[index].to_s
       padding = (" " * ((MONTH_OUTPUT_WIDTH - spelled_month.size)/2))
       s << padding + spelled_month
