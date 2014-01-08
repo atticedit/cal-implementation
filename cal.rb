@@ -2,6 +2,9 @@ require_relative 'lib/month'
 require_relative 'lib/year'
 begin
 
+  MONTHS_IN_ROW = 3
+  MONTHS_IN_COLUMN = 4
+
   # for the case where 2 arguments, a month and a year, are passed in:
   if ARGV.length == 2
 
@@ -37,7 +40,7 @@ begin
 
     # display each 3-month block
     index = 0
-    4.times do |i|
+    MONTHS_IN_COLUMN.times do |i|
       # display the monthline
       puts year.monthline index
 
@@ -46,7 +49,7 @@ begin
 
       # display the month block
       puts year.send("block_#{i}")
-      index += 3
+      index += MONTHS_IN_ROW
     end
   end
 

@@ -1,9 +1,9 @@
 class Year
 
-  YEAR_OUTPUT_PADDING = 29 # refactor to remove this magic number
+  YEAR_HEADER_WIDTH = 63
   MONTH_OUTPUT_WIDTH = 20
-  GUTTER = "  "
   MONTHS_IN_ROW = 3
+  GUTTER = "  "
 
   @@months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
@@ -29,7 +29,7 @@ class Year
 
   def header
     year_header = "#{@year}"
-    year_padding = (" " * YEAR_OUTPUT_PADDING)
+    year_padding = (" " * ((YEAR_HEADER_WIDTH - year_header.size)/2))
     year_padding + year_header
   end
 

@@ -19,7 +19,7 @@ class Month
     @spelled_month = @@months[indexed_month]
     @year = year
     last_day = @@last_days[indexed_month]
-    if numeric_month == 02
+    if @spelled_month == "February"
       last_day = Year.new(year).february_length
     end
     days = (1..last_day).to_a
@@ -29,8 +29,7 @@ class Month
     end
 
     calendar = Array.new
-    42.times do |i|
-      calendar_line = String.new
+    (DAYS_IN_WEEK * MAX_WEEKS_IN_MONTH).times do |i|
       day = days[i].to_s
       if day.size == 1
         day = " #{day}"
