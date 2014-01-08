@@ -22,29 +22,29 @@ class Month
     if @spelled_month == "February"
       last_day = Year.new(year).february_length
     end
-    days = (1..last_day).to_a
+    calendar_values = (1..last_day).to_a
     offset_of_day_one = find_offset_of_day_one
     offset_of_day_one.times do
-      days.unshift(" ")
+      calendar_values.unshift("  ")
     end
 
-    calendar = Array.new
+    positions = Array.new
     (DAYS_IN_WEEK * MAX_WEEKS_IN_MONTH).times do |i|
-      day = days[i].to_s
-      if day.size == 1
-        day = " #{day}"
-      elsif day == ""
-        day = "  "
+      calendar_value = calendar_values[i].to_s
+      if calendar_value.size == 1
+        calendar_value = " #{calendar_value}"
+      elsif calendar_value == ""
+        calendar_value = "  "
       end
-      calendar << day
+      positions << calendar_value
     end
 
-    @line_0 = calendar[0..6].join(" ") { |x| print x}
-    @line_1 = calendar[7..13].join(" ") { |x| print x}
-    @line_2 = calendar[14..20].join(" ") { |x| print x}
-    @line_3 = calendar[21..27].join(" ") { |x| print x}
-    @line_4 = calendar[28..34].join(" ") { |x| print x}
-    @line_5 = calendar[35..41].join(" ") { |x| print x}
+    @line_0 = positions[0..6].join(" ") { |x| print x}
+    @line_1 = positions[7..13].join(" ") { |x| print x}
+    @line_2 = positions[14..20].join(" ") { |x| print x}
+    @line_3 = positions[21..27].join(" ") { |x| print x}
+    @line_4 = positions[28..34].join(" ") { |x| print x}
+    @line_5 = positions[35..41].join(" ") { |x| print x}
   end
 
   attr_reader:line_0,:line_1,:line_2,:line_3,:line_4,:line_5

@@ -3,9 +3,9 @@ class Year
   YEAR_HEADER_WIDTH = 63
   MONTH_OUTPUT_WIDTH = 20
   MONTHS_IN_ROW = 3
-  GUTTER = "  "
 
   @@months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+  @@gutter = "  "
 
   def initialize year
     if year < 1800 || year > 3000
@@ -34,33 +34,33 @@ class Year
   end
 
   def monthline index
-    s = String.new
+    monthline = String.new
     (1..MONTHS_IN_ROW).each do |i|
       spelled_month = @@months[index].to_s
       padding = (" " * ((MONTH_OUTPUT_WIDTH - spelled_month.size)/2))
-      s << padding + spelled_month
+      monthline << padding + spelled_month
       unless i == MONTHS_IN_ROW
         if spelled_month.size.odd?
           padding = padding + " "
         end
-        s << padding + GUTTER
+        monthline << padding + @@gutter
       end
       index += 1
     end
-    s
+    monthline
   end
 
   def dayline
-    (("Su Mo Tu We Th Fr Sa" + GUTTER) * MONTHS_IN_ROW).rstrip
+    (("Su Mo Tu We Th Fr Sa" + @@gutter) * MONTHS_IN_ROW).rstrip
   end
 
   def format_line left, middle, right
-    left.line_0 + GUTTER + middle.line_0 + GUTTER + right.line_0 + "\n" +
-    left.line_1 + GUTTER + middle.line_1 + GUTTER + right.line_1 + "\n" +
-    left.line_2 + GUTTER + middle.line_2 + GUTTER + right.line_2 + "\n" +
-    left.line_3 + GUTTER + middle.line_3 + GUTTER + right.line_3 + "\n" +
-    left.line_4 + GUTTER + middle.line_4 + GUTTER + right.line_4.rstrip + "\n" +
-    left.line_5 + GUTTER + middle.line_5 + GUTTER + right.line_5.rstrip
+    left.line_0 + @@gutter + middle.line_0 + @@gutter + right.line_0 + "\n" +
+    left.line_1 + @@gutter + middle.line_1 + @@gutter + right.line_1 + "\n" +
+    left.line_2 + @@gutter + middle.line_2 + @@gutter + right.line_2 + "\n" +
+    left.line_3 + @@gutter + middle.line_3 + @@gutter + right.line_3 + "\n" +
+    left.line_4 + @@gutter + middle.line_4 + @@gutter + right.line_4.rstrip + "\n" +
+    left.line_5 + @@gutter + middle.line_5 + @@gutter + right.line_5.rstrip
   end
 
   def block_0
