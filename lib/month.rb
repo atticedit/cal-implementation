@@ -66,9 +66,9 @@ class Month
     # define January and February as the 13th and 14th
     # months of the previous year, per Zeller's congruence
     # http://en.wikipedia.org/wiki/Zeller's_congruence
-    case month
-    when 1 then month = 13 and year -= 1
-    when 2 then month = 14 and year -= 1
+    if month < 3
+      month += 12
+      year -= 1
     end
 
     # implement a special case of Zeller's congruence to
