@@ -68,25 +68,25 @@ class Year
                  GUTTER + right.row_5.rstrip
   end
 
-  def block_0
+  def quarter_0
     format_row Month.new(1, @year),
                Month.new(2, @year),
                Month.new(3, @year)
   end
 
-  def block_1
+  def quarter_1
     format_row Month.new(4, @year),
                Month.new(5, @year),
                Month.new(6, @year)
   end
 
-  def block_2
+  def quarter_2
     format_row Month.new(7, @year),
                Month.new(8, @year),
                Month.new(9, @year)
   end
 
-  def block_3
+  def quarter_3
     format_row Month.new(10, @year),
                Month.new(11, @year),
                Month.new(12, @year)

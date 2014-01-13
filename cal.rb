@@ -31,7 +31,7 @@ begin
     NUMBER_OF_MONTHS_DOWN.times do |i|
       puts year.monthline index
       puts year.dayline
-      puts year.send("block_#{i}")
+      puts year.send("quarter_#{i}")
       index += NUMBER_OF_MONTHS_ACROSS
     end
   end
